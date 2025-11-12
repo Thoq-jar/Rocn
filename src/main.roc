@@ -13,7 +13,8 @@ file_path = Path.from_str("build.rocn")
 rocn_dir = ".rocn"
 exe = "roc"
 version = "0.1.0"
-help_message = "Available commands: build, run, check, clean, format, repl, version, help"
+output_flags = "--output ${rocn_dir}/build/main"
+help_message = "Available commands: build, run, check, clean, format, repl, docs, release, version, help"
 
 main! = |args|
     Logger.info!("Rocn starting...")?
@@ -69,22 +70,40 @@ main! = |args|
             Dir.create_all!("${rocn_dir}/build")?
 
             main_path = "${build_config.source}/${build_config.file}"
-            old_exe_path = "${build_config.source}/main"
             exe_path = "${rocn_dir}/build/main"
 
             when command is
                 "build" ->
                     Logger.info!("Building project...")?
-                    Command.system!("${exe} build ${main_path}")?
-                    Fs.move_file!(old_exe_path, exe_path)?
+                    Command.system!("${exe} build ${main_path} ${output_flags}")?
 
                     Logger.info!("Build complete.")?
                     Ok {}
 
+                "release" ->
+                    Logger.info!("Building project in release mode...")?
+                    Command.system!("${exe} build --optimize ${main_path} ${output_flags}")?
+
+                    Logger.info!("Build complete.")?
+                    Ok {}
+
+                "bundle" ->
+                    Logger.info!("Bundling project...")?
+                    Command.system!("${exe} build --bundle .tar.gz ${main_path}")?
+
+                    Logger.info!("Bundle complete.")?
+                    Ok {}
+
+                "docs" ->
+                    Logger.info!("Generating docs...")?
+                    Command.system!("${exe} docs ${main_path}")?
+
+                    Logger.info!("Doc generation complete.")?
+                    Ok {}
+
                 "run" ->
                     Logger.info!("Building and running project...")?
-                    Command.system!("${exe} build ${main_path}")?
-                    Fs.move_file!(old_exe_path, exe_path)?
+                    Command.system!("${exe} build ${main_path} ${output_flags}")?
 
                     Logger.info!("Running...")?
                     Command.system!(exe_path)?
