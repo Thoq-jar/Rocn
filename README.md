@@ -19,5 +19,3 @@ Build the project then add the executable to $PATH.
 
 > Windows can figure it out
 
-```
-```
