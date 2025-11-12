@@ -13,7 +13,7 @@ file_path = Path.from_str("build.rocn")
 rocn_dir = ".rocn"
 exe = "roc"
 version = "0.1.0"
-help_message = "Available commands: build, run, check, clean"
+help_message = "Available commands: build, run, check, clean, format, repl, version, help"
 
 main! = |args|
     Logger.info!("Rocn starting...")?
@@ -114,6 +114,10 @@ main! = |args|
 
                 "help" ->
                     Logger.info!(help_message)?
+                    Ok {}
+
+                "repl" ->
+                    Command.system!("roc repl")?
                     Ok {}
 
                 _ ->
