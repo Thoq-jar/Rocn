@@ -11,27 +11,27 @@ bold = "\u(001b)[1m"
 reset = "\u(001b)[0m"
 
 info! : Str => Result {} _
-info! = \message ->
-    Stdout.line!("$(cyan)$(bold)ℹ INFO:$(reset) $(cyan)$(message)$(reset)")?
+info! = |message|
+    Stdout.line!("${cyan}${bold}ℹ INFO:${reset} ${cyan}${message}${reset}")?
     Ok {}
 
 success! : Str => Result {} _
-success! = \message ->
-    Stdout.line!("$(green)$(bold)✓ SUCCESS:$(reset) $(green)$(message)$(reset)")?
+success! = |message|
+    Stdout.line!("${green}${bold}✓ SUCCESS:${reset} ${green}${message}${reset}")?
     Ok {}
 
 warn! : Str => Result {} _
-warn! = \message ->
-    Stdout.line!("$(yellow)$(bold)⚠ WARNING:$(reset) $(yellow)$(message)$(reset)")?
+warn! = |message|
+    Stdout.line!("${yellow}${bold}⚠ WARNING:${reset} ${yellow}${message}${reset}")?
     Ok {}
 
 error! : Str => Result {} _
-error! = \message ->
-    Stdout.line!("$(red)$(bold)✗ ERROR:$(reset) $(red)$(message)$(reset)")?
+error! = |message|
+    Stdout.line!("${red}${bold}✗ ERROR:${reset} ${red}${message}${reset}")?
     Ok {}
 
 debug! : Str => Result {} _
-debug! = \message ->
-    Stdout.line!("$(magenta)$(bold)? DEBUG:$(reset) $(magenta)$(message)$(reset)")?
+debug! = |message|
+    Stdout.line!("${magenta}${bold}? DEBUG:${reset} ${magenta}${message}${reset}")?
     Ok {}
 
