@@ -4,14 +4,8 @@ A Rocn build system for the Roc programming language.
 
 ## Build
 
-We use Make to bootstrap Rocn
-
-```shell
-make
-```
-
-then you can use `./out/main` to build.
-
+To build, run `roc build src/main.roc` then you can install the exe
+and use it for future builds.
 
 ## Installation
 
