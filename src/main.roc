@@ -74,14 +74,14 @@ main! = |args|
 
             when command is
                 "build" ->
-                    Logger.info!("Building project...")?
+                    Logger.info!("Building (debug) project...")?
                     Command.system!("${exe} build ${main_path} ${output_flags}")?
 
                     Logger.info!("Build complete.")?
                     Ok {}
 
                 "release" ->
-                    Logger.info!("Building project in release mode...")?
+                    Logger.info!("Building (release) project...")?
                     Command.system!("${exe} build --optimize ${main_path} ${output_flags}")?
 
                     Logger.info!("Build complete.")?
