@@ -1,3 +1,6 @@
-source  src
-file    main.roc
+name          rocn
+description   A rocn build system for the Roc language
+source        src
+file          main.roc
+license       GPL-3-or-later
 
